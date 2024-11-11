@@ -83,5 +83,7 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 
 ## Contact
 
-For questions or contributions, please reach out to the developer team.
+For questions or contributions, please reach out to Marc or any other contributers.
+
+
 
