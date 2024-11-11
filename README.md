@@ -5,6 +5,8 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
 - **UI.py**: A user interface for creating `.csv` files in the required format, allowing data input with two values per cell, under the hood this uses Tkinter.
 - **Heatmapper.py**: The script that generates the heatmap visualization from the `.csv` file, using the `seaborn` library.
 
+![alt text](https://github.com/marcfimm/Heatmapper/blob/main/Seperate_A?raw=true)
+
 ## Installation
 
 ### Requirements
