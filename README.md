@@ -21,17 +21,19 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
 I would recommend using anaconda (Open Anaconda Prompt after installation, Documentation can be found here https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html):
 
 ```bash
-conda create --name Heatmapper python=3.12
+conda create --name Heatmapper python=3.12 numpy pandas seaborn matplotlib
 ```
 ```bash
 conda activate Heatmapper
 ```
 
-To install the necessary packages, use (Inside the enviroment if using anaconda):
+If you are not using Anaconda use:
 
 ```bash
 pip install pandas seaborn matplotlib
 ```
+
+To install the necessary packages
 
 ## Usage
 
