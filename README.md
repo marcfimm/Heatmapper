@@ -21,7 +21,7 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
 I would recommend using anaconda:
 
 ```bash
-conda create --name Heatmapper python=3.8
+conda create --name Heatmapper python=3.12
 conda activate Heatmapper
 ```
 
