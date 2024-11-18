@@ -18,7 +18,14 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
   - `matplotlib`
   - `tkinter`
 
-To install the necessary packages, use:
+I would recommend using anaconda:
+
+```bash
+conda create --name Heatmapper python=3.8
+conda activate Heatmapper
+```
+
+To install the necessary packages, use (Inside the enviroment if using anaconda):
 
 ```bash
 pip install pandas seaborn matplotlib
@@ -32,7 +39,7 @@ pip install pandas seaborn matplotlib
 ## Usage
 
 1. **Run `UI.py`**:
-    - Open `UI.py` in a terminal:
+    - Open `UI.py` in your favourite terminal:
       ```bash
       python UI.py
       ```
