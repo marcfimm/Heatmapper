@@ -28,7 +28,7 @@ conda activate Heatmapper
 ```
 If you have messed something up this will bring you back to the start:
 ```bash
-conda remove -n ENV_NAME --all
+conda remove -n Heatmapper --all
 ```
 If you are not using Anaconda use:
 
