@@ -42,7 +42,9 @@ pip install pandas seaborn matplotlib
     - Open `UI.py` in your favourite terminal:
       ```bash
       python UI.py
-      or
+       ```
+       or
+       ```bash
       python pathwhere/you/cloned/the/repository/to/UI.py
       ```
     - Enter the matrix dimensions (number of rows and columns) and press **Create Grid**.
