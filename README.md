@@ -26,7 +26,10 @@ conda create --name Heatmapper python=3.12 numpy pandas seaborn matplotlib
 ```bash
 conda activate Heatmapper
 ```
-
+If you have messed something up this will bring you back to the start:
+```bash
+conda remove -n ENV_NAME --all
+```
 If you are not using Anaconda use:
 
 ```bash
