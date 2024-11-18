@@ -18,7 +18,7 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
   - `matplotlib`
   - `tkinter`
 
-I would recommend using anaconda:
+I would recommend using anaconda (Open Anaconda Prompt after installation):
 
 ```bash
 conda create --name Heatmapper python=3.12
@@ -42,6 +42,8 @@ pip install pandas seaborn matplotlib
     - Open `UI.py` in your favourite terminal:
       ```bash
       python UI.py
+      or
+      python pathwhere/you/cloned/the/repository/to/UI.py
       ```
     - Enter the matrix dimensions (number of rows and columns) and press **Create Grid**.
     - Fill in the labels (top row for column labels and leftmost column for row labels).
