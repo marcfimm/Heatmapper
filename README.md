@@ -18,36 +18,23 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
   - `matplotlib`
   - `tkinter`
 
-I would recommend using anaconda (Open Anaconda Prompt after installation, Documentation can be found here https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html):
-
-```bash
-conda create --name Heatmapper python=3.12 numpy pandas seaborn matplotlib
-```
-```bash
-conda activate Heatmapper
-```
-If you have messed something up this will bring you back to the start:
-```bash
-conda remove -n Heatmapper --all
-```
-If you are not using Anaconda use:
+To install the necessary packages, use:
 
 ```bash
 pip install pandas seaborn matplotlib
 ```
 
-To install the necessary packages
+### Files
+
+1. `UI.py`: The main interface for creating CSV files.
+2. `Heatmapper.py`: The heatmap generator.
 
 ## Usage
 
 1. **Run `UI.py`**:
-    - Open `UI.py` in your favourite terminal:
+    - Open `UI.py` in a terminal:
       ```bash
       python UI.py
-       ```
-       or
-       ```bash
-      python pathwhere/you/cloned/the/repository/to/UI.py
       ```
     - Enter the matrix dimensions (number of rows and columns) and press **Create Grid**.
     - Fill in the labels (top row for column labels and leftmost column for row labels).
@@ -91,13 +78,6 @@ Label3,55,60,65
 ```
 
 Each section should start with a blank cell in the top-left corner, followed by the column labels on the first row and row labels in the first column.
-
-### Files
-
-1. `UI.py`: The main interface for creating CSV files.
-2. `Heatmapper.py`: The heatmap generator.
-3. ``: Example CSV
-4. ``: Example Heatmap
 
 ## License
 
