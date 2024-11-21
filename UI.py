@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 # Function to create the heatmap
-def heatmapper(path):
+def heatmapper(path, title):
     with open(path, 'r') as file:
         content = file.read().strip().split('\n\n')
         color_data = pd.read_csv(io.StringIO(content[0]), index_col=0)
@@ -17,18 +17,86 @@ def heatmapper(path):
     if color_data.shape != annotation_data.shape:
         raise ValueError("Color data and annotation data must have the same dimensions")
 
+    # Calculate dynamic font size based on grid dimensions
+    cell_size = min(200 / max(color_data.shape), 20)  # Cap font size to 20 for readability
+    annot_font_size = max(8, cell_size)  # Ensure a minimum font size of 8
+
     plt.figure(figsize=(8, 6))
-    ax = sns.heatmap(color_data, annot=annotation_data, fmt="d", cmap="YlGnBu", cbar_kws={'label': 'Color Value'})
-    plt.title("Heatmap")
-    plt.xlabel("Columns")
-    plt.ylabel("Rows")
+    ax = sns.heatmap(
+        color_data,
+        annot=annotation_data,
+        fmt="d",
+        cmap="YlGnBu",
+        annot_kws={"size": annot_font_size}
+    )
+    plt.title(title, fontsize=16)
+    #plt.xlabel("Columns", fontsize=14)
+    #plt.ylabel("Rows", fontsize=14)
+    plt.tight_layout()
     plt.show()
+
+
+
+# Function to gather data and save as CSV
+def submit_data():
+    file_path = file_path_entry.get()
+    title = title_entry.get()
+    if not file_path:
+        messagebox.showerror("File Path Error", "Please specify a file path to save the CSV.")
+        return
+    if not file_path.endswith(".csv"):
+        file_path += ".csv"
+
+    rows = len(entry_grid)
+    cols = len(entry_grid[0]) if rows > 0 else 0
+
+    upper_matrix = [[""] * (cols + 1) for _ in range(rows + 1)]
+    lower_matrix = [[""] * (cols + 1) for _ in range(rows + 1)]
+
+    upper_matrix[0][1:] = [col_label.get() for col_label in col_labels]
+    lower_matrix[0][1:] = [col_label.get() for col_label in col_labels]
+    for r in range(1, rows + 1):
+        upper_matrix[r][0] = row_labels[r - 1].get()
+        lower_matrix[r][0] = row_labels[r - 1].get()
+
+        for c in range(1, cols + 1):
+            value1 = entry_grid[r - 1][c - 1][0].get()
+            value2 = (
+                value1 if duplicate_checkbox_var.get() else entry_grid[r - 1][c - 1][1].get()
+            )
+            upper_matrix[r][c] = value1 if value1 else "0"
+            lower_matrix[r][c] = value2 if value2 else "0"
+
+    try:
+        with open(file_path, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(upper_matrix)
+            writer.writerow([])
+            writer.writerows(lower_matrix)
+        
+        messagebox.showinfo("Data Saved", f"Data has been saved to {file_path}")
+        heatmapper(file_path, title)
+    except Exception as e:
+        messagebox.showerror("File Save Error", f"An error occurred while saving the file: {e}")
 
 
 # Initialize the main Tkinter window
 root = tk.Tk()
 root.title("CSV Data Input with Duplicate Checkbox")
 
+# Frame for title input
+title_frame = tk.Frame(root)
+title_frame.pack(pady=10)
+tk.Label(title_frame, text="Heatmap Title:").pack(side=tk.LEFT)
+title_entry = tk.Entry(title_frame, width=40)
+title_entry.pack(side=tk.LEFT, padx=5)
+
+# Frame for file path input
+file_path_frame = tk.Frame(root)
+file_path_frame.pack(pady=10)
+tk.Label(file_path_frame, text="Save CSV File Path:").pack(side=tk.LEFT)
+file_path_entry = tk.Entry(file_path_frame, width=40)
+file_path_entry.pack(side=tk.LEFT, padx=5)
 
 # Function to enable/disable the second row of input fields
 def toggle_lower_entries():
@@ -78,49 +146,6 @@ def create_grid():
     toggle_lower_entries()
 
 
-# Function to gather data and save as CSV
-def submit_data():
-    file_path = file_path_entry.get()
-    if not file_path:
-        messagebox.showerror("File Path Error", "Please specify a file path to save the CSV.")
-        return
-    if not file_path.endswith(".csv"):
-        file_path += ".csv"
-
-    rows = len(entry_grid)
-    cols = len(entry_grid[0]) if rows > 0 else 0
-
-    upper_matrix = [[""] * (cols + 1) for _ in range(rows + 1)]
-    lower_matrix = [[""] * (cols + 1) for _ in range(rows + 1)]
-
-    upper_matrix[0][1:] = [col_label.get() for col_label in col_labels]
-    lower_matrix[0][1:] = [col_label.get() for col_label in col_labels]
-    for r in range(1, rows + 1):
-        upper_matrix[r][0] = row_labels[r - 1].get()
-        lower_matrix[r][0] = row_labels[r - 1].get()
-
-    for r in range(1, rows + 1):
-        for c in range(1, cols + 1):
-            value1 = entry_grid[r - 1][c - 1][0].get()
-            value2 = (
-                value1 if duplicate_checkbox_var.get() else entry_grid[r - 1][c - 1][1].get()
-            )
-            upper_matrix[r][c] = value1 if value1 else "0"
-            lower_matrix[r][c] = value2 if value2 else "0"
-
-    try:
-        with open(file_path, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerows(upper_matrix)
-            writer.writerow([])
-            writer.writerows(lower_matrix)
-        
-        messagebox.showinfo("Data Saved", f"Data has been saved to {file_path}")
-        heatmapper(file_path)
-    except Exception as e:
-        messagebox.showerror("File Save Error", f"An error occurred while saving the file: {e}")
-
-
 # Frame for dimension inputs
 dimension_frame = tk.Frame(root)
 dimension_frame.pack(pady=10)
@@ -143,13 +168,6 @@ data_frame.pack(pady=10)
 col_labels = []
 row_labels = []
 entry_grid = []
-
-# Frame for file path input
-file_path_frame = tk.Frame(root)
-file_path_frame.pack(pady=10)
-tk.Label(file_path_frame, text="Save CSV File Path:").pack(side=tk.LEFT)
-file_path_entry = tk.Entry(file_path_frame, width=40)
-file_path_entry.pack(side=tk.LEFT, padx=5)
 
 # Checkbox for duplicate functionality
 duplicate_checkbox_var = tk.BooleanVar(value=True)
