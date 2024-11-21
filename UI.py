@@ -18,8 +18,8 @@ def heatmapper(path, title):
         raise ValueError("Color data and annotation data must have the same dimensions")
 
     # Calculate dynamic font size based on grid dimensions
-    cell_size = min(200 / max(color_data.shape), 20)  # Cap font size to 20 for readability
-    annot_font_size = max(8, cell_size)  # Ensure a minimum font size of 8
+    cell_size = min(200 / max(color_data.shape), 25)  # Cap font size to 25 for readability
+    annot_font_size = max(12, cell_size)  # Ensure a minimum font size of 12
 
     plt.figure(figsize=(8, 6))
     ax = sns.heatmap(
@@ -29,7 +29,15 @@ def heatmapper(path, title):
         cmap="YlGnBu",
         annot_kws={"size": annot_font_size}
     )
-    plt.title(title, fontsize=16)
+    plt.title(title, fontsize=30)
+    # Set the size of axis labels
+    #ax.set_xlabel("Columns", fontsize=14)  # Change x-axis label size
+    #ax.set_ylabel("Rows", fontsize=14)    # Change y-axis label size
+
+    # Set the size of tick labels
+    ax.tick_params(axis='x', labelsize=25)  # Change x-axis tick labels size
+    ax.tick_params(axis='y', labelsize=25)  # Change y-axis tick labels size
+
     #plt.xlabel("Columns", fontsize=14)
     #plt.ylabel("Rows", fontsize=14)
     plt.tight_layout()
