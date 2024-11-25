@@ -37,7 +37,7 @@ pip install pandas seaborn matplotlib
       python UI.py
       ```
     - Enter the matrix dimensions (number of rows and columns) and press **Create Grid**.
-    - If you want to add Chemical formulae or mathematical symbols use standard LaTeX notation in math mode $$ (eg. /delta, _1)
+    - If you want to add Chemical formulae or mathematical symbols use standard LaTeX notation in math mode (eg. /delta, _1, all enclosed between $$)
     - Fill in the labels (top row for column labels and leftmost column for row labels).
     - Enter two values for each cell:
       - **Left** value: Defines the color intensity for that cell in the heatmap.
