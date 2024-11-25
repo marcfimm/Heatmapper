@@ -5,10 +5,16 @@ import io
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
+
+# Set the font globally
+rcParams['font.family'] = 'DejaVu Sans'
+rcParams['mathtext.fontset'] = 'dejavusans'
 
 
 # Function to create the heatmap
 def heatmapper(path, title):
+    # Set up font to support subscripts and italics
     with open(path, 'r') as file:
         content = file.read().strip().split('\n\n')
         color_data = pd.read_csv(io.StringIO(content[0]), index_col=0)
@@ -27,7 +33,8 @@ def heatmapper(path, title):
         annot=annotation_data,
         fmt="d",
         cmap="YlGnBu",
-        annot_kws={"size": annot_font_size}
+        annot_kws={"size": annot_font_size},
+        vmin = 0, vmax=100, cbar_kws={"ticks":[0,20,40,60,80,100]}
     )
     plt.title(title, fontsize=30)
     # Set the size of axis labels
@@ -35,7 +42,7 @@ def heatmapper(path, title):
     #ax.set_ylabel("Rows", fontsize=14)    # Change y-axis label size
 
     # Set the size of tick labels
-    ax.tick_params(axis='x', labelsize=25)  # Change x-axis tick labels size
+    ax.tick_params(axis='x', labelsize=15)  # Change x-axis tick labels size
     ax.tick_params(axis='y', labelsize=25)  # Change y-axis tick labels size
 
     #plt.xlabel("Columns", fontsize=14)
@@ -90,7 +97,7 @@ def submit_data():
 
 # Initialize the main Tkinter window
 root = tk.Tk()
-root.title("CSV Data Input with Duplicate Checkbox")
+root.title("Heatmapper")
 
 # Frame for title input
 title_frame = tk.Frame(root)
