@@ -37,10 +37,12 @@ pip install pandas seaborn matplotlib
       python UI.py
       ```
     - Enter the matrix dimensions (number of rows and columns) and press **Create Grid**.
+    - If you want to add Chemical formulae or mathematical symbols use standard LaTeX notation (eg. $_1$,$/delta$)
     - Fill in the labels (top row for column labels and leftmost column for row labels).
     - Enter two values for each cell:
       - **Left** value: Defines the color intensity for that cell in the heatmap.
       - **Right** value: Displayed as the numeric value in the heatmap cell.
+      - **Tick** Checkbox just automatically copies values to the other cell.
     - Specify a save path for the `.csv` file.
     - Press **Submit Data** to save the CSV and automatically generate a heatmap.
 
