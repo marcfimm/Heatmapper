@@ -4,6 +4,7 @@ This project provides an easy-to-use interface for creating heatmaps in Python, 
 
 - **UI.py**: A user interface for creating `.csv` files in the required format, allowing data input with two values per cell, under the hood this uses Tkinter.
 - **Heatmapper.py**: The script that generates the heatmap visualization from the `.csv` file, using the `seaborn` library.
+- **Viridis_Heatmapper** : This is like UI.py but uses a custom viridis colourmap which I like a lot because it is a perceptually uniform sequential colourmap that still conforms to what most people intuitively expect the colours to mean.
 
 ![alt text](https://github.com/marcfimm/Heatmapper/blob/main/Seperate_A.png?raw=true)
 
@@ -28,7 +29,7 @@ pip install pandas seaborn matplotlib
 
 1. `UI.py`: The main interface for creating CSV files.
 2. `Heatmapper.py`: The heatmap generator.
-3. 'Viridis_Heatmapper' : This is like UI.py but uses a custom viridis colourmap which I like a lot because it is a perceptually uniform sequential colourmap that still conforms to what most people intuitively expect the colours to mean.
+3. 'Viridis_Heatmapper' : This is like UI.py but uses a custom viridis colourmap.
 ## Usage
 
 1. **Run `UI.py`**:
