@@ -28,7 +28,7 @@ pip install pandas seaborn matplotlib
 
 1. `UI.py`: The main interface for creating CSV files.
 2. `Heatmapper.py`: The heatmap generator.
-
+3. 'Viridis_Heatmapper' : This is like UI.py but uses a custom viridis colourmap which I like a lot because it is a perceptually uniform sequential colourmap that still conforms to what most people intuitively expect the colours to mean.
 ## Usage
 
 1. **Run `UI.py`**:
